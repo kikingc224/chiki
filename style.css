@@ -1,0 +1,528 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* PANTALLA INICIAL */
+#overlayInicio {
+  position: fixed;
+  inset: 0;
+  background-color: #FFE1EA;
+  background-image: url("estrellitas.gif");
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.mensaje {
+  font-size: 1rem; /* Tamaño pequeño */
+  color: #6b4e16;
+  text-align: center;
+  cursor: pointer;
+  
+  /* CENTRADO DE VERDAD */
+  position: fixed; /* Usa fixed en lugar de absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* Sin fondos, sin borders */
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  
+  /* Solo sombra de texto para visibilidad */
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.9),
+    0 0 20px rgba(255, 255, 255, 0.7),
+    2px 2px 4px rgba(0, 0, 0, 0.3);
+  
+  /* Animación simple de latido */
+  animation: latidoSuave 2s infinite ease-in-out;
+  
+  /* Asegurar que esté sobre todo */
+  z-index: 10001;
+  pointer-events: auto;
+}
+
+/* Animación más suave */
+@keyframes latidoSuave {
+  0%, 100% { 
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+/* ESCENA 1: PLAYA LEJOS */
+#plano1 {
+  position: fixed;
+  inset: 0;
+  background-image: url("playa_lejos.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#zonaPicnic {
+  position: absolute;
+  left: 37%;
+  bottom: 47%;
+  width: 140px;
+  height: 90px;
+  transform: translateX(-50%) rotate(2deg);
+  cursor: pointer;
+}
+
+#zonaPicnic .papoi {
+  position: absolute;
+  width: 40px;
+}
+
+#zonaPicnic .papoi-izq {
+  left: 0;
+  bottom: 0;
+  transform: rotate(3deg);
+}
+
+#zonaPicnic .papoi-der {
+  right: 0;
+  bottom: 0;
+  transform: rotate(-2deg);
+}
+
+#zonaPicnic .canasta {
+  position: absolute;
+  width: 38px;
+  left: 50%;
+  bottom: 2px;
+  transform: translateX(-60%) rotate(2deg);
+}
+
+#zonaPicnic .pastel {
+  position: absolute;
+  width: 34px;
+  left: 55%;
+  bottom: 8px;
+  transform: translateX(-10%) rotate(-2deg);
+}
+
+#zonaPicnic .flechas {
+  position: absolute;
+  width: 48px;
+  left: 50%;
+  top: -2px;
+  transform: translateX(-20%);
+  animation: flechaFlota 1.5s infinite;
+}
+
+@keyframes flechaFlota {
+  0%   { transform: translateX(-50%) translateY(0); }
+  50%  { transform: translateX(-50%) translateY(-6px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+/* ESCENA 3: PLAYA CERCA */
+#plano3 {
+  position: fixed;
+  inset: 0;
+  background-image: url("playa_cerca.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 2;
+}
+
+/* ZONA EN LA ARENA - PAPOIS GIGANTES */
+#zonaArena {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  width: 400px;
+  height: 280px;
+  transform: translateX(-50%);
+}
+
+#zonaArena .papoi {
+  width: 140px;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+#zonaArena .papoi-izq {
+  left: 0;
+  transform: rotate(5deg);
+  filter: drop-shadow(5px 5px 3px rgba(0,0,0,0.2));
+}
+
+#zonaArena .papoi-der {
+  right: -50px;
+  transform: rotate(-5deg);
+  filter: drop-shadow(-5px 5px 3px rgba(0,0,0,0.2));
+}
+
+#zonaArena .canasta {
+  position: absolute;
+  width: 100px;
+  left: 50%;
+  bottom: 5px;
+  transform: translateX(-60%) rotate(3deg);
+  z-index: 2;
+  filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.2));
+}
+
+#zonaArena .pastel {
+  position: absolute;
+  width: 90px;
+  left: 55%;
+  bottom: 10px;
+  transform: translateX(-10%) rotate(-3deg);
+  z-index: 3;
+  filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+  animation: pastelBrilla 2s infinite alternate;
+  cursor: pointer !important;
+}
+
+@keyframes pastelBrilla {
+  0% { filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2)) brightness(1); }
+  100% { filter: drop-shadow(0 0 8px rgba(255, 223, 0, 0.5)) brightness(1.1); }
+}
+
+/* CARTA */
+#cartaOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#cartaOverlay.mostrar {
+  opacity: 1;
+}
+
+.carta-contenido {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  min-height: 400px;
+  background-image: url('carta.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 60px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+  animation: abrirCarta 1s ease forwards;
+}
+
+@keyframes abrirCarta {
+  0% {
+    transform: scale(0.3) rotateX(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.carta-cuerpo {
+  color: #5a3921;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem; /* MÁS PEQUEÑO (antes 1.1rem) */
+  line-height: 1.6;
+  min-height: 300px; /* Mantén este */
+  padding: 20px; /* Mantén este */
+  background: rgba(255, 248, 225, 0.7); /* Mantén este */
+  border-radius: 5px;
+  outline: none;
+  overflow-y: auto;
+  max-height: 60vh; /* Mantén este */
+  white-space: pre-line; /* Respeta saltos de línea */
+  word-wrap: break-word; /* Evita que se salga */
+  
+  /* Opcional: si quieres sangría */
+  text-align: justify;
+}
+
+/* Cuando el usuario está escribiendo */
+.carta-cuerpo:focus {
+  background: rgba(255, 248, 225, 0.9);
+  font-size: 1rem; /* Un poquito más grande al escribir */
+}
+.carta-cuerpo::after {
+  content: "KE BIBA LA CUMPLEAÑERAAAAALALALALAAAA 💗💗💗";
+  display: block;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.1em;
+  color: #ff6b8b;
+}
+/* Para móviles */
+@media (max-width: 600px) {
+  .carta-cuerpo {
+    font-size: 0.9rem; /* Más pequeño en móvil */
+    line-height: 1.5;
+    min-height: 250px; /* Mantén similar */
+  }
+}
+
+.cerrar-carta {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: #ff6b8b;
+  color: #E4B1AB;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 10001;
+}
+
+.cerrar-carta:hover {
+  background: #ff4757;
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  #zonaArena {
+    width: 350px;
+    height: 240px;
+    bottom: 8%;
+  }
+  
+  #zonaArena .papoi {
+    width: 120px;
+  }
+  
+  #zonaArena .canasta {
+    width: 85px;
+  }
+  
+  #zonaArena .pastel {
+    width: 75px;
+  }
+  
+  .carta-contenido {
+    width: 95%;
+    padding: 50px 20px;
+    min-height: 350px;
+  }
+  
+  .carta-cuerpo {
+    font-size: 1rem;
+    min-height: 250px;
+  }
+}
+
+/* Movimiento para papois en ESCENA 1 */
+#zonaPicnic .papoi {
+  position: absolute;
+  width: 40px;
+  animation: balanceoPapoi 4s infinite ease-in-out;
+}
+
+/* Movimiento para papois en ESCENA 3 */
+#zonaArena .papoi {
+  width: 140px;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  cursor: pointer;
+  animation: balanceoPapoiGrande 5s infinite ease-in-out;
+}
+
+/* Animación de balanceo (escena 1) */
+@keyframes balanceoPapoi {
+  0%, 100% { 
+    transform: translateY(0px) rotate(var(--rotacion-inicial));
+  }
+  25% { 
+    transform: translateY(-5px) rotate(calc(var(--rotacion-inicial) + 2deg));
+  }
+  50% { 
+    transform: translateY(0px) rotate(var(--rotacion-inicial));
+  }
+  75% { 
+    transform: translateY(-3px) rotate(calc(var(--rotacion-inicial) - 2deg));
+  }
+}
+
+/* Animación más exagerada para papois gigantes (escena 3) */
+@keyframes balanceoPapoiGrande {
+  0%, 100% { 
+    transform: translateY(0px) rotate(var(--rotacion-inicial));
+  }
+  33% { 
+    transform: translateY(-10px) rotate(calc(var(--rotacion-inicial) + 3deg));
+  }
+  66% { 
+    transform: translateY(-5px) rotate(calc(var(--rotacion-inicial) - 3deg));
+  }
+}
+
+/* Rotaciones específicas para cada papoi */
+#zonaPicnic .papoi-izq {
+  left: 0;
+  bottom: 0;
+  --rotacion-inicial: 3deg;
+}
+
+#zonaPicnic .papoi-der {
+  right: 0;
+  bottom: 0;
+  --rotacion-inicial: -2deg;
+}
+
+#zonaArena .papoi-izq {
+  left: 0;
+  --rotacion-inicial: 5deg;
+}
+
+#zonaArena .papoi-der {
+  right: -80px;
+  --rotacion-inicial: -5deg;
+}
+
+/* TORTA BRILLANTE EN ESCENA 1 - SIN RECUADRO */
+#zonaPicnic .pastel {
+  position: absolute;
+  width: 34px;
+  left: 55%;
+  bottom: 10px;
+  transform: translateX(-10%) rotate(-2deg);
+  animation: brilloTorta 2s infinite alternate;
+  filter: drop-shadow(0 0 8px rgba(255, 100, 100, 0.6));
+  z-index: 2;
+  
+  /* QUITAR ESTO: */
+  /* box-shadow: none !important; */
+}
+
+/* TORTA BRILLANTE EN ESCENA 3 - SIN RECUADRO */
+#zonaArena .pastel {
+  position: absolute;
+  width: 90px;
+  left: 60%;
+  bottom: 10px;
+  transform: translateX(-10%) rotate(-3deg);
+  animation: brilloTortaFuerte 1.5s infinite alternate;
+  filter: drop-shadow(0 0 15px rgba(255, 223, 0, 0.8));
+  z-index: 3;
+  cursor: pointer !important;
+  
+  /* QUITAR la animación de pulso que creaba el recuadro: */
+  /* animation: 
+    brilloTortaFuerte 1.5s infinite alternate,
+    pulsoClickeable 2s infinite;  <- QUITAR ESTA LÍNEA */
+}
+
+/* Y ELIMINA COMPLETAMENTE ESTA ANIMACIÓN: */
+/*
+@keyframes pulsoClickeable {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.7); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 255, 0, 0); }
+}
+*/
+
+/* Animación de brillo SUAVE (escena 1) */
+@keyframes brilloTorta {
+  0% { 
+    filter: drop-shadow(0 0 5px rgba(255, 50, 50, 0.4)) brightness(1);
+    transform: translateX(-10%) rotate(-2deg) scale(1);
+  }
+  100% { 
+    filter: drop-shadow(0 0 12px rgba(255, 200, 50, 0.7)) brightness(1.2);
+    transform: translateX(-10%) rotate(-2deg) scale(1.05);
+  }
+}
+
+/* Animación de brillo FUERTE (escena 3) */
+@keyframes brilloTortaFuerte {
+  0% { 
+    filter: drop-shadow(0 0 10px rgba(255, 50, 50, 0.7)) brightness(1);
+    transform: translateX(-10%) rotate(-3deg) scale(1);
+  }
+  100% { 
+    filter: drop-shadow(0 0 25px rgba(255, 223, 0, 0.9)) brightness(1.3);
+    transform: translateX(-10%) rotate(-3deg) scale(1.1);
+  }
+}
+
+/* Efecto de pulso para la torta cuando es clickeable */
+#zonaArena .pastel {
+  animation: 
+    brilloTortaFuerte 1.5s infinite alternate,
+    pulsoClickeable 2s infinite;
+}
+
+@keyframes pulsoClickeable {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.7); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 255, 0, 0); }
+}
+
+/* ========== ELIMINAR TODOS LOS RECUADROS AMARILLOS ========== */
+
+/* Quitar cualquier outline, border, box-shadow de las tortas */
+.pastel,
+#zonaPicnic .pastel,
+#zonaArena .pastel {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Asegurar que solo tenga filter para el brillo */
+#zonaPicnic .pastel {
+  animation: brilloTortaSuave 2s infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(255, 200, 100, 0.6));
+}
+
+#zonaArena .pastel {
+  animation: brilloTortaFuerte 1.5s infinite alternate;
+  filter: drop-shadow(0 0 20px rgba(255, 223, 0, 0.7));
+}
+
+/* Animaciones SOLO con filter (sin transform que cause recuadros) */
+@keyframes brilloTortaSuave {
+  0% { 
+    filter: drop-shadow(0 0 8px rgba(255, 150, 50, 0.5)) brightness(1);
+  }
+  100% { 
+    filter: drop-shadow(0 0 15px rgba(255, 220, 100, 0.8)) brightness(1.15);
+  }
+}
+
+@keyframes brilloTortaFuerte {
+  0% { 
+    filter: drop-shadow(0 0 12px rgba(255, 100, 50, 0.7)) brightness(1);
+  }
+  100% { 
+    filter: drop-shadow(0 0 25px rgba(255, 223, 0, 0.9)) brightness(1.2);
+  }
+}

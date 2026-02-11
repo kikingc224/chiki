@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chikii 👻</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ESCENA 1: Pantalla de inicio -->
+  <div id="overlayInicio">
+    <div class="mensaje">
+      sorpresiteee !!! <br>
+      tap para comenzar 💗
+    </div>
+  </div>
+
+  <!-- ESCENA 2: Picnic con atardecer lejano -->
+  <div id="plano1">
+    <div id="zonaPicnic">
+      <img src="papoi1.png" class="papoi papoi-izq">
+      <img src="papoi2.png" class="papoi papoi-der">
+      <img src="canasta.png" class="canasta">
+      <img src="pastel.gif" class="pastel">
+      <img src="flechas.gif" class="flechas">
+    </div>
+  </div>
+
+  <!-- ESCENA 3: Atardecer cercano -->
+  <div id="plano3">
+    <div id="zonaArena">
+      <img src="papoi1.png" class="papoi papoi-izq">
+      <img src="canasta.png" class="canasta">
+      <img src="pastel.gif" class="pastel" id="pastelEscena3">
+      <img src="papoi2.png" class="papoi papoi-der">
+    </div>
+  </div>
+
+  <!-- CARTA (oculta inicialmente) -->
+  <div id="cartaOverlay">
+  <div class="carta-contenido">
+    <div class="carta-cuerpo" contenteditable="true">
+        ELIZ CUMPLEAÑOS MI AMOOOOOOOOR.
+        
+        Un te amo se keda chikitin para describir todo lo que siento ahora mismo y por lo feliz k soy de tenerte en mi vida.
+        
+        Hoy como todos los años reafirmo que no existe ni un solo universo, ni dimensión o realidad alterna donde no te elija como mi PAPOICITA HERMOSAAAAA, eres mi persona favorita y mi alegría constante mor. 🫶
+        
+        Gracias por existir, por llenar de luz mis días, por ser mi recordatorio del amor verdadero y por ser TUUUÚ.
+        
+    </div>
+    <button class="cerrar-carta">X</button>
+  </div>
+</div>
+
+  <!-- AUDIOS -->
+  <audio id="musica" loop>
+    <source src="amol.mp3" type="audio/mpeg">
+  </audio>
+  
+  <audio id="nuevaCancion">
+    <source src="banana.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!-- Agrega fecha/hora para evitar caché -->
+<link rel="stylesheet" href="style.css?<?php echo time(); ?>">
+<script src="script.js?<?php echo time(); ?>"></script>
